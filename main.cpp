@@ -19,15 +19,15 @@ int main(int argc, char **argv){
     String *rule;
     size_t size;
     the_rule.split("=",&rule,&size);
-    if((rule[0].trim().equals("src-ip")) || (rule[0].trim().equals("des-ip"))){
+    if((rule[0].trim().equals("src-ip")) || (rule[0].trim().equals("dst-ip"))){
         Ip ip_rule(the_rule.trim());
         ip_rule.set_value(rule[1].trim());
         parse_input(ip_rule);
 
     }
     if((rule[0].trim().equals("dst-port"))||(rule[0].trim().equals("src-port"))){
-        Port port_rule(the_rule);
-        port_rule.set_value(rule[1]);
+        Port port_rule(the_rule.trim());
+        port_rule.set_value(rule[1].trim());
         parse_input(port_rule);
 
     }

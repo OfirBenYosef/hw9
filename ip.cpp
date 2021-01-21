@@ -26,9 +26,16 @@ bool Ip::set_value(String val){
             seg = seg + (ip[i].to_integer()<< (24-8*i)); 
         }
         unsigned int mask = MAX_INT;
-        mask=(mask<<(32-get_mask));
-        low=(seg & mask);
-        high=(seg |(~mask));
+        if (get_mask){
+            mask=(mask<<(32-get_mask));
+            low=(seg & mask);
+            high=(seg |(~mask));
+        }
+        else{
+            low=0;
+            high=MAX_INT;
+        }
+        
         delete[] ip;
         delete[] ip_out;
         return true;

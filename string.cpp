@@ -153,7 +153,7 @@ int String::to_integer() const {
 	int radix = 1;
 	int len=this->length;
 	for (int i = (len-1); i >= 0; i--) {
-		if ((data[i]>zero) && (data[i]<nine)){
+		if ((data[i]>=zero) && (data[i]<=nine)){
 			became_int= became_int + radix * (data[i] - zero);
 			radix = radix * 10;
 		}
