@@ -54,6 +54,9 @@ bool Field::match_value(String val) const{
 
 bool Field::match(String packet){
     String trimed_string =packet.trim();
+    if (!(&trimed_string)){
+        return false;
+    }
     const char *pattern_splitter = "=";
     const char *packet_splitter = ",=";
     String *output_pattern;
@@ -62,10 +65,14 @@ bool Field::match(String packet){
     bool is_match=false;
     pattern.split(pattern_splitter,&output_pattern,&size);
     trimed_string.split(packet_splitter,&output_packet,&size);
+    if (0==size){
+        return false;
+    }
     String the_rule=output_pattern[0];
     for(int i=0;i<(size-1);i++){
         if(output_packet[i].equals(the_rule)){
            is_match = match_value(output_packet[i+1]);
+           break;
         }
         else{
             is_match=is_match;

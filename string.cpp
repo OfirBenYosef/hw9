@@ -1,5 +1,5 @@
 #include <iostream>
-#include "String.h"
+#include "string.h"
 #include <stdbool.h>
 #include<string.h>
 using namespace std;
@@ -109,23 +109,27 @@ bool String::equals(const char *rhs) const {
 }
 /*void split(const char *delimiters, String **output, size_t *size) const*/
 void String::split(const char *delimiters, String **output, size_t *size) const{
+	if (length==0){
+		*size=0;
+		exit;
+	}
+	else{
 	char *temp={NULL};
-    int cnt=1;
+    int cnt=0;
 	char *str=strdup(data);
 	
     temp=strtok(str,delimiters);
     while(temp!=NULL){
         cnt++;
         temp=strtok(NULL,delimiters);
-
     }
     free(str);
     unsigned int num_of_strings=cnt;
     *size=(size_t)num_of_strings;
     char *temp2={NULL};
-	*output=(new String[num_of_strings]);
+	*output=(new String[num_of_strings+1]);
 	cnt=0;
-	char *temp_str=data;
+	char *temp_str=strdup(data);
     temp2=strtok(temp_str,delimiters);
     while(temp2!=NULL){
         (*output)[cnt]=String(temp2);
@@ -133,6 +137,8 @@ void String::split(const char *delimiters, String **output, size_t *size) const{
         cnt++;
     }
     (*output)[cnt]=String(temp2);
+    free(temp_str);
+}
 }
 
 
@@ -165,9 +171,13 @@ int String::to_integer() const {
 	 * ' ' copy the char to the new str else we continue
 	 */
 	String String::trim() const {
+		if(NULL == data){
+			return NULL;
+		}
 	   	char space = ' ';
-		int temp = 1;
-		char *temp_str = new char[strlen(data)+1];
+		//int temp = 1;
+		//char *temp_str = new char[strlen(data)+1];
+		char temp_str[length]; 
 		int j = 0;
 		int len=length;
 		for (int i = 0; i <= len; i++) {

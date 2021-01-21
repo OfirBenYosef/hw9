@@ -46,7 +46,9 @@ bool Ip::match_value(String val) const{
             seg = seg + ((ip[i].to_integer()) << (24-8*i)); 
         } 
         if((seg <= high) && (seg >= low)){
+            delete[] ip;
             return true;
         }
+        delete[] ip;
         return false;
 }
