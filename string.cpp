@@ -4,11 +4,11 @@
 #include<string.h>
 using namespace std;
 
-/*String() - C'tor*/
+/* String() - default constructor */
 String::String()
 : data(NULL) ,length(0){}
 
-/*String(const String &str)*/
+/*String(const String &str) - copy constructor*/
 String::String(const String &str) : 
     length (str.length) {
 		if(length==0){
@@ -20,7 +20,7 @@ String::String(const String &str) :
 		}
 }
 
-/*String(const char *str)*/
+/* String(const char *str) */
 String::String(const char *str){
 	/*is str isnt NULL*/
 	if(str){
