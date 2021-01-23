@@ -10,9 +10,9 @@ using namespace std;
 
 
 int main(int argc, char **argv){
-   /* if(check_args(argc,argv)){
-        return error_code;
-    }*/
+    if(check_args(argc,argv)){
+        return 0; 
+    }
     String the_rule(argv[1]);
     String *rule;
     size_t size;
