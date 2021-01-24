@@ -4,9 +4,19 @@
 #include "string.h"
 #define MAX_INT 4294967295;
 
+/**
+ *C'tor
+ * set low ->0 and high->0
+*/
 Ip::Ip(String pattern)
 : Field(pattern,IP),low(0),high(0){}
-
+/**
+ * @brif get the mask from the mask and cast it to int
+ * find the highst ip and the lowest ip by bit mask
+ * return ture if success else return false
+ * @param : size - num of sub str , the_make - the sub str (the mask)
+ *seg - the ip in binary
+ */
 bool Ip::set_value(String val){
     const char *the_make = "/";
     size_t size;
@@ -42,7 +52,13 @@ bool Ip::set_value(String val){
     }
 
 }
-
+/**
+ *get the ip from val and convert it to int
+ * check if the ip is between high and low
+ * return true if the ip is match
+ *else return false
+ *@param: ip - the ip of val ,size - the num of the sub str
+ */
 bool Ip::match_value(String val) const{
         String *ip;
         const char *dot =".";
