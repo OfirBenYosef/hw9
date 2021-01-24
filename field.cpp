@@ -78,7 +78,7 @@ bool Field::match(String packet){
     }
     String the_rule=output_pattern[0];
     /* cheks if there is field in the packets which fits the rule*/
-    for(int i=0;i<(size-1);i++){
+    for(int i=0;i<(int)(size-1);i++){
         if(output_packet[i].equals(the_rule)){
            is_match = match_value(output_packet[i+1]);
            break;

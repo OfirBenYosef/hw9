@@ -139,6 +139,9 @@ void String::split(const char *delimiters, String **output, size_t *size) const{
 	if (length==0){
 		*size=0;
 	}
+	else if(delimiters==NULL || output==NULL ||data==NULL){
+		*size=2;
+	}
 	else{
 		char *temp={NULL};
 	    int cnt=0;
@@ -191,16 +194,18 @@ int String::to_integer() const {
 		if(NULL == data){
 			return NULL;
 		}
-	   	char space = ' ';
-		char temp_str[length]; 
-		int j = 0;
-		int len=length;
-		for (int i = 0; i <= len; i++) {
-			if (data[i] != space) {
-				temp_str[j] = data[i];
-				j++;
-			}
+		else{
+		   	char space = ' ';
+			char temp_str[length]; 
+			int j = 0;
+			int len=length;
+			for (int i = 0; i <= len; i++) {
+				if (data[i] != space) {
+					temp_str[j] = data[i];
+					j++;
+				}
 
+			}
+			return temp_str;
 		}
-		return temp_str;
 	}
